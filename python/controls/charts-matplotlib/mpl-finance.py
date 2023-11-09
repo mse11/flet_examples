@@ -12,7 +12,7 @@ matplotlib.use("svg")
 def main(page: Page):
 
     daily = pd.read_csv(
-        ".\\playground\\data\\SP500_NOV2019_Hist.csv", index_col=0, parse_dates=True
+        "https://raw.githubusercontent.com/matplotlib/mplfinance/master/examples/data/SP500_NOV2019_Hist.csv", index_col=0, parse_dates=True
     )
     daily.index.name = "Date"
     daily.shape

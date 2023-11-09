@@ -37,8 +37,33 @@ def main(page: Page):
         height=150,
     )
 
-    r = Row([c1, c2, c3, c4])
-    page.add(r)
+    c_separator = Container(
+        bgcolor=colors.BLACK,
+        width=10,
+        height=150,
+    )
+
+    r = Row(
+        [
+            c_separator,
+            c1,
+            c_separator,
+            c2,
+            c_separator,
+            c3,
+            c_separator,
+            c4,
+            c_separator,
+        ],
+        spacing=0,
+    )
+
+    page.add(
+        Container(
+            content=r,
+            bgcolor=colors.RED,
+        )
+    )
 
 
 flet.app(target=main)

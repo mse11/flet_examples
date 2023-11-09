@@ -17,9 +17,9 @@ def main(page: Page):
 
     page.add(lv)
 
-    for i in range(0, 60):
+    for i in range(0, 10):
         sleep(1)
-        lv.controls.append(Text(f"Line {count}"))
+        lv.controls.append(Text(f"Line {count} with sleep 1 sec"))
         count += 1
         page.update()
 

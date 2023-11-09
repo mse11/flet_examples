@@ -2,16 +2,18 @@ import flet as ft
 
 
 def main(page: ft.Page):
+    image = ft.Image(
+        src="https://picsum.photos/200/200?1",
+        width=200,
+        height=200,
+        fit=ft.ImageFit.FILL,
+    )
     page.add(
         ft.Row(
             [
+                image,
                 ft.ShaderMask(
-                    ft.Image(
-                        src="https://picsum.photos/200/200?1",
-                        width=200,
-                        height=200,
-                        fit=ft.ImageFit.FILL,
-                    ),
+                    image,
                     blend_mode=ft.BlendMode.MULTIPLY,
                     shader=ft.RadialGradient(
                         center=ft.alignment.center,
@@ -19,7 +21,7 @@ def main(page: ft.Page):
                         colors=[ft.colors.WHITE, ft.colors.PINK],
                         tile_mode=ft.GradientTileMode.CLAMP,
                     ),
-                )
+                ),
             ]
         )
     )

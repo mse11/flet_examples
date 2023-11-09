@@ -1,22 +1,23 @@
 import flet
-from flet import Container, Icon, Page, Tab, Tabs, Text, alignment, icons
+from flet import Container, Icon, Page, Tab, Tabs, Text, alignment, icons, colors
 
 
 def main(page: Page):
-
     t = Tabs(
         selected_index=1,
         animation_duration=300,
         tabs=[
             Tab(
-                text="Tab 1",
-                content=Container(
-                    content=Text("This is Tab 1"), alignment=alignment.center
-                ),
+                tab_content=Icon(icons.SEARCH),
+                content=Text("This is Tab 1"),
             ),
             Tab(
-                tab_content=Icon(icons.SEARCH),
-                content=Text("This is Tab 2"),
+                text="Tab 2",
+                content=Container(
+                    content=Text("This is Tab 2"),
+                    alignment=alignment.center,
+                    bgcolor=colors.DEEP_PURPLE_200,
+                ),
             ),
             Tab(
                 text="Tab 3",

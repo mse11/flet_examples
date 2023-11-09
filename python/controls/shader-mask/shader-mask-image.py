@@ -12,16 +12,20 @@ from flet import (
 
 
 def main(page: Page):
+    image_1 = Image(
+        src="https://picsum.photos/200/300?1",
+        width=400,
+        height=400,
+        fit="fill",
+    )
+    image_2 = Image(src="https://picsum.photos/200/300?2")
+
     page.add(
         Row(
             [
+                image_1,
                 ShaderMask(
-                    Image(
-                        src="https://picsum.photos/200/300?1",
-                        width=400,
-                        height=400,
-                        fit="fill",
-                    ),
+                    image_1,
                     blend_mode="colorBurn",
                     shader=RadialGradient(
                         center=alignment.top_left,
@@ -30,8 +34,9 @@ def main(page: Page):
                         tile_mode="clamp",
                     ),
                 ),
+                image_2,
                 ShaderMask(
-                    Image(src="https://picsum.photos/200/300?2"),
+                    image_2,
                     blend_mode="dstIn",
                     shader=LinearGradient(
                         begin=alignment.top_center,

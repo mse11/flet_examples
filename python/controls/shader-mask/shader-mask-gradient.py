@@ -2,11 +2,13 @@ import flet as ft
 
 
 def main(page: ft.Page):
+    image = ft.Image(src="https://picsum.photos/100/200?2")
     page.add(
         ft.Row(
             [
+                image,
                 ft.ShaderMask(
-                    ft.Image(src="https://picsum.photos/100/200?2"),
+                    image,
                     blend_mode=ft.BlendMode.DST_IN,
                     shader=ft.LinearGradient(
                         begin=ft.alignment.top_center,

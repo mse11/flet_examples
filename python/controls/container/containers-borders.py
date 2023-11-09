@@ -44,7 +44,7 @@ def main(page: Page):
         height=150,
     )
 
-    r = Row([c1])
+    r = Row([c1, c2, c3])
     page.add(r)
 
 
