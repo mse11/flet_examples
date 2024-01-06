@@ -17,7 +17,12 @@ def main(page: ft.Page):
     page.pubsub.subscribe(on_message)
 
     def send_click(e):
-        page.pubsub.send_all(Message(user=page.session_id, text=new_message.value))
+        page.pubsub.send_all(
+            Message(
+                user=page.session_id,
+                text=new_message.value
+            )
+        )
         new_message.value = ""
         page.update()
 

@@ -62,12 +62,24 @@ def main(page: ft.Page):
             page.session.set("user_name", join_user_name.value)
             page.dialog.open = False
             new_message.prefix = ft.Text(f"{join_user_name.value}: ")
-            page.pubsub.send_all(Message(user_name=join_user_name.value, text=f"{join_user_name.value} has joined the chat.", message_type="login_message"))
+            page.pubsub.send_all(
+                Message(
+                    user_name=join_user_name.value,
+                    text=f"{join_user_name.value} has joined the chat.",
+                    message_type="login_message"
+                )
+            )
             page.update()
 
     def send_message_click(e):
         if new_message.value != "":
-            page.pubsub.send_all(Message(page.session.get("user_name"), new_message.value, message_type="chat_message"))
+            page.pubsub.send_all(
+                Message(
+                    page.session.get("user_name"),
+                    new_message.value,
+                    message_type="chat_message"
+                )
+            )
             new_message.value = ""
             new_message.focus()
             page.update()

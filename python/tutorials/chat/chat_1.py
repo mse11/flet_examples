@@ -14,4 +14,5 @@ def main(page: ft.Page):
     )
 
 
-ft.app("chat", target=main, view=ft.WEB_BROWSER)
+ft.app(main, view=ft.WEB_BROWSER)
+#ft.app(main, name="chat", view=ft.WEB_BROWSER)
