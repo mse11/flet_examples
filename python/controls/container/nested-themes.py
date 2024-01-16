@@ -1,4 +1,5 @@
 import flet as ft
+from theme_colors import theme_colors_containers
 
 
 def main(page: ft.Page):
@@ -10,16 +11,22 @@ def main(page: ft.Page):
     )
 
     page.add(
+        ft.Row(controls=theme_colors_containers()),
+        ft.Markdown('# Control level'),
         ft.Row(
             [
-                ft.ElevatedButton("Page theme"),
+                ft.ElevatedButton("Page theme elevated button"),
                 ft.TextButton("Page theme text button"),
+                ft.Text("Page theme text"),
                 ft.Text(
                     "Text in primary container color",
                     color=ft.colors.PRIMARY_CONTAINER,
                 ),
-            ]
+                ft.Container(width=50, height=50, border=ft.border.all(1)),
+                ft.Container(width=50, height=50, border=ft.border.all(1), bgcolor=ft.colors.PRIMARY_CONTAINER),
+            ],
         ),
+        ft.Markdown('# Control Theme level'),
         ft.Container(
             content=ft.Row(
                 [
