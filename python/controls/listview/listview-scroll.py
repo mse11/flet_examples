@@ -7,7 +7,14 @@ from flet import ListView, Page, Text
 def main(page: Page):
     page.title = "Auto-scrolling ListView"
 
-    lv = ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+    lv = ListView(
+        expand=1,
+        spacing=10,
+        padding=20,
+        auto_scroll=True,
+        # horizontal=False as  Column, to work properly set .expand=1/True, or .height
+        # horizontal=True  as  Row,    to work properly set .expand=1/True, or .width
+    )
 
     count = 1
 
