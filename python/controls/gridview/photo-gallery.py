@@ -3,16 +3,20 @@ from flet import GridView, Image, Page, border_radius
 
 
 def main(page: Page):
-    page.title = "GridView Example"
+    runs_count = 3
+    max_extent = 150
+    child_aspect_ratio = 1
+
+    page.title = f"GridView Example runs_count={runs_count} max_extent={max_extent} child_aspect_ratio={child_aspect_ratio}"
     page.theme_mode = "dark"
     page.padding = 50
     page.update()
 
     images = GridView(
         expand=1,
-        runs_count=5,
-        max_extent=150,
-        child_aspect_ratio=1.0,
+        runs_count=runs_count,
+        max_extent=max_extent,
+        child_aspect_ratio=child_aspect_ratio,
         spacing=5,
         run_spacing=5,
     )
