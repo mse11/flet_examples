@@ -3,10 +3,10 @@ from flet import Page, Text
 
 
 def main(page: Page):
-    page.add(Text(f"Initial route: {page.route} views: {page.views}"))
+    page.add(Text(f"Initial route: {page.route} \t --> views id(v)'s: {[id(v) for v in page.views]}"))
 
     def route_change(e):
-        page.add(Text(f"New route: {e.route} views: {page.views}"))
+        page.add(Text(f"New route: {e.route} \t --> views id(v)'s: {[id(v) for v in page.views]}"))
 
     page.on_route_change = route_change
     page.update()
