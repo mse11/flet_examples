@@ -1,8 +1,21 @@
 import flet
-from flet import AppBar, ElevatedButton, Page, Text, View, colors
+from flet import AppBar, ElevatedButton, Page, Text, View, colors, Column
 
 
 def main(page: Page):
+
+    COLUMN_POSITION = 1
+
+    status = []
+    def dum_page_state():
+        status_info = f">>> ON_route_change <<< page.route '{page.route}'" + \
+                      f" <-> page.views '{page.views}' <-> page.views IDs:', {[id(v) for v in page.views]}" + \
+                      f" <-> page.views[LAST=={id(page.views[-1])}].controls {page.views[-1].controls}"
+        status.append(status_info)
+
+        page.views[-1].controls[COLUMN_POSITION].controls = [Text(s) for s in status]
+        page.update()
+
     page.title = "Routes Example"
 
     print("Initial route:", page.route)
@@ -15,6 +28,7 @@ def main(page: Page):
                 "/",
                 [
                     AppBar(title=Text("Flet app")),
+                    Column(),  # DEBUG LOGS
                     ElevatedButton("Go to settings", on_click=open_settings),
                 ],
             )
@@ -25,6 +39,7 @@ def main(page: Page):
                     "/settings",
                     [
                         AppBar(title=Text("Settings"), bgcolor=colors.SURFACE_VARIANT),
+                        Column(),  # DEBUG LOGS
                         Text("Settings!", style="bodyMedium"),
                         ElevatedButton(
                             "Go to mail settings", on_click=open_mail_settings
@@ -40,14 +55,16 @@ def main(page: Page):
                         AppBar(
                             title=Text("Mail Settings"), bgcolor=colors.SURFACE_VARIANT
                         ),
+                        Column(),  # DEBUG LOGS
                         Text("Mail settings!"),
                     ],
                 )
             )
-        page.update()
+        dum_page_state()  # page.update()
 
     def view_pop(e):
-        print("View pop:", e.view)
+        print("View pop:", e)
+        status.append(f">>> ON_view_pop <<<  {e}")
         page.views.pop()
         top_view = page.views[-1]
         page.go(top_view.route)
