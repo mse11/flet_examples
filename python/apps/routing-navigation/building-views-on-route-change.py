@@ -60,9 +60,9 @@ def main(page: Page):
                     ],
                 )
             )
-        dum_page_state()  # page.update()
+        dum_page_state()
 
-    def view_pop(e):
+    def view_pop(e): # It fires when the user clicks automatic "Back" button in AppBar
         print("View pop:", e)
         status.append(f">>> ON_view_pop <<<  {e}")
         page.views.pop()
@@ -70,7 +70,7 @@ def main(page: Page):
         page.go(top_view.route)
 
     page.on_route_change = route_change
-    page.on_view_pop = view_pop
+    page.on_view_pop = view_pop  # It fires when the user clicks automatic "Back" button in AppBar
 
     def open_mail_settings(e):
         page.go("/settings/mail")
