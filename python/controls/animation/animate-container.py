@@ -3,6 +3,12 @@ import flet as ft
 
 def main(page: ft.Page):
 
+    def dump_event(e):
+        print('MSE_GET_BY_ID == ControlEvent.control', page.get_control(e.target))
+        event_str = f"Event( target={e.target} name={e.name} data(TYPE_OF_ANIMATION)={e.data})"
+        ctrl_event_str = f"ControlEvent(control={e.control} page={e.page})"
+        print(f"Container animation end: {event_str} {ctrl_event_str}")
+
     g1 = ft.LinearGradient(
         begin=ft.alignment.top_center,
         end=ft.alignment.bottom_center,
@@ -25,6 +31,7 @@ def main(page: ft.Page):
         gradient=g1,
         alignment=ft.alignment.top_left,
         animate=ft.animation.Animation(1000, ft.AnimationCurve.BOUNCE_OUT),
+        on_animation_end=dump_event,
         border=ft.border.all(2, "blue"),
         border_radius=10,
         padding=10,
