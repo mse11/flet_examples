@@ -34,31 +34,37 @@ def main(page: Page):
         page.update()
 
     def on_upload_progress(e: FilePickerUploadEvent):
-        prog_bars[e.file_name].value = e.progress
-        prog_bars[e.file_name].update()
+        p = prog_bars[e.file_name]
+        if e.error is None:
+            p.color = None
+            p.value = e.progress
+        else:
+            p.color = 'red'
+        p.update()
 
-    file_picker = FilePicker(on_result=file_picker_result, on_upload=on_upload_progress)
+    file_picker_dialog = FilePicker(on_result=file_picker_result, on_upload=on_upload_progress)
 
     def upload_files(e):
         uf = []
-        if file_picker.result is not None and file_picker.result.files is not None:
-            for f in file_picker.result.files:
+        if file_picker_dialog.result is not None and file_picker_dialog.result.files is not None:
+            for f in file_picker_dialog.result.files:
                 uf.append(
                     FilePickerUploadFile(
                         f.name,
                         upload_url=page.get_upload_url(f.name, 600),
+                        # method = "PUT"(default) / "POST"
                     )
                 )
-            file_picker.upload(uf)
+            file_picker_dialog.upload(uf)
 
     # hide dialog in a overlay
-    page.overlay.append(file_picker)
+    page.overlay.append(file_picker_dialog)
 
     page.add(
         ElevatedButton(
             "Select files...",
             icon=icons.FOLDER_OPEN,
-            on_click=lambda _: file_picker.pick_files(allow_multiple=True),
+            on_click=lambda _: file_picker_dialog.pick_files(allow_multiple=True),
         ),
         Column(ref=files),
         ElevatedButton(
