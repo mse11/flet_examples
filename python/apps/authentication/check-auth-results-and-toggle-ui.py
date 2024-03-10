@@ -1,7 +1,7 @@
 import os
 
 import flet
-from flet import ElevatedButton, LoginEvent, Page
+from flet import ElevatedButton, LoginEvent, Page, ControlEvent
 from flet.auth.providers import GitHubOAuthProvider
 
 
@@ -22,7 +22,7 @@ def main(page: Page):
     def logout_button_click(e):
         page.logout()
 
-    def on_logout(e):
+    def on_logout(e: ControlEvent):
         toggle_login_buttons()
 
     def toggle_login_buttons():

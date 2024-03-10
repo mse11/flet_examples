@@ -73,7 +73,7 @@ def main(page: ft.Page):
         page.client_storage.remove(AUTH_TOKEN_KEY)
         page.logout()
 
-    def on_logout(e):
+    def on_logout(e: ft.ControlEvent):
         toggle_login_buttons()
         list_github_repositories()
         page.update()

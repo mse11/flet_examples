@@ -19,7 +19,7 @@ async def main(page: ft.Page):
     async def login_click(e):
         await page.login_async(provider)
 
-    async def on_login(e):
+    async def on_login(e: ft.LoginEvent):
         print("Login error:", e.error)
         print("Access token:", page.auth.token.access_token)
         print("User ID:", page.auth.user.id)

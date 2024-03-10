@@ -19,7 +19,7 @@ def main(page: ft.Page):
     def login_click(e):
         page.login(provider)
 
-    def on_login(e):
+    def on_login(e: ft.LoginEvent):
         print("Login error:", e.error)
         print("Access token:", page.auth.token.access_token)
         print("User ID:", page.auth.user.id)
